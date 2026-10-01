@@ -1,0 +1,18 @@
+name = "claude-agent-status"
+pages_build_output_dir = "./public"
+compatibility_date = "2025-09-01"
+
+[vars]
+# The only identity allowed to view the dashboard.
+ALLOWED_EMAIL = "max.kelly@students.rsd.edu"
+# Fill these in from Cloudflare Zero Trust -> Access -> Applications (see README).
+ACCESS_TEAM_DOMAIN = "" # e.g. "yourteam.cloudflareaccess.com"
+ACCESS_AUD = ""         # the application's "Application Audience (AUD) Tag"
+
+# Secret (never commit): wrangler pages secret put INGEST_TOKEN
+
+[[d1_databases]]
+binding = "DB"
+database_name = "agent-status"
+database_id = "REPLACE_WITH_ID_FROM_wrangler_d1_create"
+migrations_dir = "migrations"

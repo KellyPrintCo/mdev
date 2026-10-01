@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent Status</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%232a78d6'/%3E%3C/svg%3E" id="favicon" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="live-dot" id="liveDot" aria-hidden="true"></span>
+      <h1>Agents</h1>
+      <span class="muted small" id="updated">Connecting…</span>
+    </div>
+    <div class="top-actions">
+      <button class="btn ghost" id="notifyBtn" type="button" title="Browser notifications when an agent needs you or finishes">🔔 Alerts off</button>
+      <button class="btn ghost" id="themeBtn" type="button" title="Toggle theme">◐</button>
+      <span class="muted small" id="who"></span>
+      <a class="btn ghost small" href="/cdn-cgi/access/logout">Sign out</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="tiles" id="tiles" aria-label="Summary"></section>
+
+    <section class="toolbar" aria-label="Filters">
+      <div class="chips" id="chips" role="tablist"></div>
+      <div class="toolbar-right">
+        <input id="search" class="input" type="search" placeholder="Search project, branch, prompt…" aria-label="Search agents" />
+        <select id="range" class="input" aria-label="Time range">
+          <option value="1">Last 24 hours</option>
+          <option value="3" selected>Last 3 days</option>
+          <option value="7">Last 7 days</option>
+          <option value="30">Last 30 days</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="grid" id="grid" aria-live="polite"></section>
+    <div class="empty" id="empty" hidden>
+      <h2>No agents reporting yet</h2>
+      <p class="muted">Install the hook on any machine running Claude Code and agents will show up here within seconds.</p>
+      <pre class="code">./hooks/install.sh https://&lt;this-site&gt; &lt;INGEST_TOKEN&gt;</pre>
+      <p class="muted small">See the README for cloud (claude.ai/code) sessions.</p>
+    </div>
+  </main>
+
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-label="Agent details">
+    <div class="drawer-inner" id="drawerBody"></div>
+  </aside>
+  <div class="scrim" id="scrim" hidden></div>
+  <div class="tooltip" id="tip" role="tooltip" hidden></div>
+</body>
+</html>
